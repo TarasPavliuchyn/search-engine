@@ -31,11 +31,11 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class SearchEngineControllerTest {
 
     private static final String INSTAGRAM = "www.instagram.com";
-    private static final String INSTAGRAM_TAGS = "likes friends pictures stories cats girls celebrities health";
+    private static final String INSTAGRAM_TAGS = "likes friends pictures stories cats celebrities health";
     private static final String FACEBOOK = "www.facebook.com";
-    private static final String FACEBOOK_TAGS = "likes friends pictures stories news politics games people celebrities health";
+    private static final String FACEBOOK_TAGS = "likes friends pictures stories cats celebrities health politics games";
     private static final String NY_TIMES = "www.nytimes.com";
-    private static final String BBC_TAGS = "news people politics war economics money oil climate celebrities health";
+    private static final String BBC_TAGS = "news politics economics climate celebrities health";
     private static final String DOC_URL = "/api/v1/documents/";
     private static final String KEY_URL = "/api/v1/keys/";
 

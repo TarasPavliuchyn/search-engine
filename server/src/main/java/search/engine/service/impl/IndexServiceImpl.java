@@ -30,8 +30,10 @@ public class IndexServiceImpl implements IndexService<String, String> {
 
     @Override
     public Set<String> findByAllMatch(Set<String> tokens) {
+        // if only one token then no interception
         if (tokens.size() == 1) {
-            return indexes.get(tokens.iterator().next());
+            Set<String> keys = indexes.get(tokens.iterator().next());
+            return keys == null ? Collections.emptySet() : keys;
         }
 
         List<Set<String>> nullableKeys = tokens.stream()
@@ -43,6 +45,7 @@ public class IndexServiceImpl implements IndexService<String, String> {
     }
 
     private Set<String> intersect(List<Set<String>> nullableKeys) {
+        // if even one set is null or empty then no interception
         if (nullableKeys.stream().anyMatch(val -> val == null || val.isEmpty())) {
             return Collections.emptySet();
         } else {

@@ -7,7 +7,7 @@ Requirements:
     - or change accordingly at application.properties of corresponding projects
 
 For build and tests running:
-mvn clean install
+- mvn clean install
 
 For run:
 - server
@@ -17,24 +17,25 @@ For run:
 
 API:
 - server
-    GET: http://localhost:8090/api/v1/documents/{key}
-    GET: http://localhost:8090/api/v1/keys?tokens=tag1,tag2..
-    POST: http://localhost:8090/api/v1/documents
-        Body:
-        {
-          "key":"key1",
-          "document":"tag1 tag2"
-        }
+    - GET: http://localhost:8090/api/v1/documents/{key}
+    - GET: http://localhost:8090/api/v1/keys?tokens=tag1,tag2..
+    - POST: http://localhost:8090/api/v1/documents
+        - Body:
+            {
+              "key":"key1",
+              "document":"tag1 tag2"
+            }
 - client
-    GET: http://localhost:8080/client/documents/{key}
-    GET: http://localhost:8080/client/search?tokens=tag1,tag2..
-    POST: http://localhost:8080/client/documents
-        Body:
-        {
-          "key":"key1",
-          "document":"tag1 tag2"
-        }
+    - GET: http://localhost:8080/client/documents/{key}
+    - GET: http://localhost:8080/client/search?tokens=tag1,tag2..
+    - POST: http://localhost:8080/client/documents
+        - Body:
+            {
+              "key":"key1",
+              "document":"tag1 tag2"
+            }
 
-------------------
-Total time  | ~8h |
-------------------
+
+Total spent time: ~8h
+Comments: keys and tokens are case-sensitive
+
