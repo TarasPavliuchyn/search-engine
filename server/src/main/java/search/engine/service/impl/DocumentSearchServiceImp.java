@@ -33,7 +33,7 @@ public class DocumentSearchServiceImp implements DocumentSearchService<String, S
         if (prevValue == null) {
             indexService.indexDocument(document, key);
         } else {
-            log.warn("Document overriding is not supports.");
+            log.warn("Document overriding is not supported.");
         }
     }
 
