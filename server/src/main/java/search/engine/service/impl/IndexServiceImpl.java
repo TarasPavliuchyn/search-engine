@@ -5,7 +5,6 @@ import search.engine.service.IndexService;
 
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.stream.Collectors;
 
 @Service
 public class IndexServiceImpl implements IndexService<String, String> {
@@ -36,29 +35,30 @@ public class IndexServiceImpl implements IndexService<String, String> {
             return keys == null ? Collections.emptySet() : keys;
         }
 
-        List<Set<String>> nullableKeys = tokens.stream()
-                .map(token -> indexes.get(token))
-                .collect(Collectors.toList());
+        List<Set<String>> allKeys = new ArrayList<>();
+        for (String token : tokens) {
+            Set<String> keys = indexes.get(token);
+            if (keys == null) {
+                return Collections.emptySet();
+            } else {
+                allKeys.add(keys);
+            }
+        }
 
-        return intersect(nullableKeys);
+        return intersect(allKeys);
 
     }
 
     private Set<String> intersect(List<Set<String>> nullableKeys) {
-        // if even one set is null or empty then no interception
-        if (nullableKeys.stream().anyMatch(val -> val == null || val.isEmpty())) {
-            return Collections.emptySet();
-        } else {
-            Set<String> common = new LinkedHashSet<>();
-            if (!nullableKeys.isEmpty()) {
-                Iterator<Set<String>> iterator = nullableKeys.iterator();
-                common.addAll(iterator.next());
-                while (iterator.hasNext()) {
-                    common.retainAll(iterator.next());
-                }
+        Set<String> common = new LinkedHashSet<>();
+        if (!nullableKeys.isEmpty()) {
+            Iterator<Set<String>> iterator = nullableKeys.iterator();
+            common.addAll(iterator.next());
+            while (iterator.hasNext()) {
+                common.retainAll(iterator.next());
             }
-            return common;
         }
+        return common;
     }
 
 }
